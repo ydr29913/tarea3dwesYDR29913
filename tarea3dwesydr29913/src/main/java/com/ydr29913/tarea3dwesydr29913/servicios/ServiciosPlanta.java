@@ -1,10 +1,11 @@
 package com.ydr29913.tarea3dwesydr29913.servicios;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ydr29913.tarea3dwesydr29913.modelo.Planta;
-import com.ydr29913.tarea3dwesydr29913.repositorios.EjemplarRepository;
 import com.ydr29913.tarea3dwesydr29913.repositorios.PlantaRepository;
 
 @Service
@@ -28,6 +29,10 @@ public class ServiciosPlanta {
 		}
 		return true;
 	}
-	
 
+	
+	public List<Planta> obtenerPlantasOrdenadasAlfabeticamente() {
+        return plantarepo.findAllByOrderByNombreComunAsc();
+    }
+	
 }
