@@ -5,7 +5,9 @@ import org.springframework.boot.CommandLineRunner;
 
 import com.ydr29913.tarea3dwesydr29913.fachada.Fachada;
 import com.ydr29913.tarea3dwesydr29913.modelo.Planta;
+import com.ydr29913.tarea3dwesydr29913.servicios.ServiciosCredenciales;
 import com.ydr29913.tarea3dwesydr29913.servicios.ServiciosEjemplar;
+import com.ydr29913.tarea3dwesydr29913.servicios.ServiciosPersona;
 import com.ydr29913.tarea3dwesydr29913.servicios.ServiciosPlanta;
 
 public class Principal implements CommandLineRunner{
@@ -16,20 +18,18 @@ public class Principal implements CommandLineRunner{
 	@Autowired
 	ServiciosEjemplar servejemplar;
 	
+	@Autowired
+	ServiciosCredenciales servcredenciales;
+	
+	@Autowired
+	ServiciosPersona servpersona;
+	
 	@Override
 	public void run(String... args) throws Exception {
-		System.out.println("INI");
 		
-		Fachada f = new Fachada(servplant);
-		f.mostrarMenu();
+		Fachada fachada = new Fachada(servplant, servejemplar, servcredenciales, servpersona);
+		fachada.mostrarMenu();
 		
-		
-		Planta p = new Planta();
-		/*
-		servplant.validarPlanta(p);
-		
-		servplant.insertarPlanta(p);
-		*/
 		
 	}
 

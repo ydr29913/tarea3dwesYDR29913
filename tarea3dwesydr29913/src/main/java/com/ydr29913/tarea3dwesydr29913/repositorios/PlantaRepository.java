@@ -15,8 +15,6 @@ import com.ydr29913.tarea3dwesydr29913.modelo.Planta;
 @Repository
 public interface PlantaRepository extends JpaRepository<Planta, Long> {
 	
-	
-	
 	default boolean existeCodigo(Planta p) {
 		List<Planta> listaPlantas = findAll();
 		

@@ -25,6 +25,9 @@ public class Credenciales implements Serializable {
 	@Column
 	private String password;
 	
+	@Column
+	private String perfil;
+	
 	public Credenciales() {}
 
 	public Long getId() {
@@ -49,6 +52,14 @@ public class Credenciales implements Serializable {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public String getPerfil() {
+		return perfil;
+	}
+
+	public void setPerfil(String perfil) {
+		this.perfil = perfil;
 	}
 
 	public static long getSerialversionuid() {
