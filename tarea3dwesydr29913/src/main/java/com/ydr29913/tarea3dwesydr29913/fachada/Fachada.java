@@ -12,6 +12,7 @@ import com.ydr29913.tarea3dwesydr29913.modelo.Persona;
 import com.ydr29913.tarea3dwesydr29913.modelo.Planta;
 import com.ydr29913.tarea3dwesydr29913.servicios.ServiciosCredenciales;
 import com.ydr29913.tarea3dwesydr29913.servicios.ServiciosEjemplar;
+import com.ydr29913.tarea3dwesydr29913.servicios.ServiciosMensaje;
 import com.ydr29913.tarea3dwesydr29913.servicios.ServiciosPersona;
 import com.ydr29913.tarea3dwesydr29913.servicios.ServiciosPlanta;
 
@@ -19,21 +20,20 @@ import com.ydr29913.tarea3dwesydr29913.servicios.ServiciosPlanta;
 public class Fachada {
 
 	private ServiciosPlanta servplant;
-
 	private ServiciosEjemplar servejemplar;
-	
 	private ServiciosPersona servpersona;
-    
 	private ServiciosCredenciales servcredenciales;
+	private ServiciosMensaje servmensaje;
     private Credenciales usuarioAutenticado;
     
     
     @Autowired
-    public Fachada(ServiciosPlanta servplant, ServiciosEjemplar servejemplar, ServiciosCredenciales servcredenciales, ServiciosPersona servpersona) {
+    public Fachada(ServiciosPlanta servplant, ServiciosEjemplar servejemplar, ServiciosCredenciales servcredenciales, ServiciosPersona servpersona, ServiciosMensaje servmensaje) {
     	this.servplant = servplant;
     	this.servejemplar = servejemplar;
     	this.servcredenciales = servcredenciales;
     	this.servpersona = servpersona;
+    	this.servmensaje = servmensaje;
     }
     
     
@@ -133,7 +133,7 @@ public class Fachada {
     
 
     //Menu para Administradores
-	public void menuAdmin() {
+    public void menuAdmin() {
         Scanner sc = new Scanner(System.in);
 
         int opcion = 0;
@@ -144,8 +144,9 @@ public class Fachada {
                 System.out.println("\t\t\t\t1 - LOGIN");
                 System.out.println("\t\t\t\t2 - VER PLANTAS");
                 System.out.println("\t\t\t\t3 - REGISTRAR UNA PERSONA");
-                System.out.println("\t\t\t\t4 - ..............");
-                System.out.println("\t\t\t\t5 - ..............");
+                System.out.println("\t\t\t\t4 - INSERTAR NUEVA PLANTA");
+                System.out.println("\t\t\t\t5 - MODIFICAR PLANTA");
+                System.out.println("\t\t\t\t6 - MENU GESTION DE EJEMPLARES");
                 System.out.println("\t\t\t\t9 - SALIR");
 
                 opcion = sc.nextInt();
@@ -158,6 +159,15 @@ public class Fachada {
                         break;
                     case 3:
                     	registrarNuevaPersona();
+                    	break;
+                    case 4:
+                    	insertarNuevaPlanta();
+                    	break;
+                    case 5:
+                    	modificarPlanta();
+                    	break;
+                    case 6:
+                    	//menuGestionEjemplares(null);
                     	break;
                     case 9:
                         break;
@@ -209,5 +219,60 @@ public class Fachada {
         System.out.println("¡Persona registrada correctamente!");
     }
 	
+	public void insertarNuevaPlanta() {
+	    Scanner sc = new Scanner(System.in);
+
+	    System.out.println("Introduce el código de la planta:");
+	    String codigoPlanta = sc.nextLine();
+
+	    if (servplant.existePlantaPorCodigo(codigoPlanta)) {
+	        System.out.println("ERROR: Ya existe una planta con este código.");
+	        return;
+	    }
+
+	    System.out.println("Introduce el nombre común de la planta:");
+	    String nombreComun = sc.nextLine();
+
+	    System.out.println("Introduce el nombre científico de la planta:");
+	    String nombreCientifico = sc.nextLine();
+
+	    Planta nuevaPlanta = new Planta();
+	    nuevaPlanta.setCodigo(codigoPlanta);
+	    nuevaPlanta.setNombreComun(nombreComun);
+	    nuevaPlanta.setNombreCientifico(nombreCientifico);
+
+	    servplant.insertarPlanta(nuevaPlanta);
+
+	    System.out.println("¡Planta insertada correctamente!");
+	}
+	
+	public void modificarPlanta() {
+	    Scanner sc = new Scanner(System.in);
+
+	    System.out.println("Introduce el código de la planta que deseas modificar:");
+	    String codigoPlanta = sc.nextLine();
+
+	    Planta plantaExistente = servplant.obtenerPlantaPorCodigo(codigoPlanta);
+	    if (plantaExistente == null) {
+	        System.out.println("ERROR: No se ha encontrado una planta con este código.");
+	        return;
+	    }
+
+	    System.out.println("Introduce el nuevo nombre común de la planta (deja en blanco para no modificar):");
+	    String nuevoNombreComun = sc.nextLine();
+	    if (!nuevoNombreComun.isEmpty()) {
+	        plantaExistente.setNombreComun(nuevoNombreComun);
+	    }
+
+	    System.out.println("Introduce el nuevo nombre científico de la planta (deja en blanco para no modificar):");
+	    String nuevoNombreCientifico = sc.nextLine();
+	    if (!nuevoNombreCientifico.isEmpty()) {
+	        plantaExistente.setNombreCientifico(nuevoNombreCientifico);
+	    }
+
+	    servplant.modificarPlanta(plantaExistente);
+
+	    System.out.println("¡Planta modificada correctamente!");
+	}
 	
 }

@@ -1,6 +1,7 @@
 package com.ydr29913.tarea3dwesydr29913.repositorios;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -32,4 +33,6 @@ public interface PlantaRepository extends JpaRepository<Planta, Long> {
 	}
 	
 	List<Planta> findAllByOrderByNombreComunAsc();
+	
+	Optional<Planta> findByCodigo(String codigo);
 }
