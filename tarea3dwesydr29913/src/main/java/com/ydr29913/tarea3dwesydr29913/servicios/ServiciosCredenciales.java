@@ -22,10 +22,29 @@ public class ServiciosCredenciales {
 		return null;
 	}
 	
+	/*
 	public boolean validarUsuario(String usuario) {
 	    return credencialesrepo.findByUsuario(usuario) == null;
 	}
+	*/
+	public boolean validarUsuario(String usuario) {
+	    if (usuario == null || usuario.contains(" ")) {
+	        return false;
+	    }
+	    return credencialesrepo.findByUsuario(usuario) == null;
+	}
 
+	/*
+	public boolean validarPassword(String password) {
+	    return credencialesrepo.findByUsuario(password) == null;
+	}
+	*/
+	public boolean validarPassword(String password) {
+	    if (password == null || password.contains(" ")) {
+	        return false;
+	    }
+	    return credencialesrepo.findByUsuario(password) == null;
+	}
     
     public void insertarCredenciales(Credenciales credenciales) {
         if (credencialesrepo.findByUsuario(credenciales.getUsuario()) == null) {

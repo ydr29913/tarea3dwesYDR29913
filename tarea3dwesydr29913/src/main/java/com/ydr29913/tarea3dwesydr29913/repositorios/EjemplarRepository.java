@@ -37,6 +37,7 @@ public interface EjemplarRepository extends JpaRepository<Ejemplar, Long> {
 		return 0L;
 	}
 
+	List<Ejemplar> findByPlanta(Planta planta);
 	
 	default List<Ejemplar> todosEjemplaresDescendiente() {
 		return findAll(Sort.by(Sort.Direction.DESC, "id"));

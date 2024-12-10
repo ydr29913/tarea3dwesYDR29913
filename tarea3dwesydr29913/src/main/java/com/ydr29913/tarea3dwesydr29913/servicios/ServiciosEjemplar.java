@@ -33,4 +33,8 @@ public class ServiciosEjemplar {
 	public void actualizar(Ejemplar e) {
 		ejemplarrepo.saveAndFlush(e);
 	}
+	
+	public List<Ejemplar> obtenerEjemplaresPorPlanta(Planta planta) {
+        return ejemplarrepo.findByPlanta(planta);
+    }
 }
