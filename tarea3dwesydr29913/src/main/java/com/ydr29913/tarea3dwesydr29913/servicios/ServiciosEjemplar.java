@@ -55,6 +55,4 @@ public class ServiciosEjemplar {
         ejemplar.getMensajes().add(mensaje);
         ejemplarrepo.save(ejemplar);
     }
-	
-	
 }

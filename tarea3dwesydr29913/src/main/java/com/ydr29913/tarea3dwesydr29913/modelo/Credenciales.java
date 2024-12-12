@@ -65,6 +65,4 @@ public class Credenciales implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	
-	
 }

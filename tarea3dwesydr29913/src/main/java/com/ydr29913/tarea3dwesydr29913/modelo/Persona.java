@@ -54,6 +54,4 @@ public class Persona implements Serializable{
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	
-	
 }

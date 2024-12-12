@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 
 import com.ydr29913.tarea3dwesydr29913.fachada.Fachada;
-import com.ydr29913.tarea3dwesydr29913.modelo.Planta;
 import com.ydr29913.tarea3dwesydr29913.servicios.ServiciosCredenciales;
 import com.ydr29913.tarea3dwesydr29913.servicios.ServiciosEjemplar;
 import com.ydr29913.tarea3dwesydr29913.servicios.ServiciosMensaje;
@@ -33,6 +32,5 @@ public class Principal implements CommandLineRunner{
 	public void run(String... args) throws Exception {
 		Fachada fachada = new Fachada(servplant, servejemplar, servcredenciales, servpersona, servmensaje);
 		fachada.mostrarMenu();
-		
 	}
 }

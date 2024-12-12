@@ -15,5 +15,4 @@ public class Tarea3dwesydr29913Application {
 	public static void main(String[] args) {
 		SpringApplication.run(Tarea3dwesydr29913Application.class, args);
 	}
-
 }

@@ -31,7 +31,6 @@ public class ServiciosPlanta {
 		return true;
 	}
 
-	
 	public List<Planta> obtenerPlantasOrdenadasAlfabeticamente() {
         return plantarepo.findAllByOrderByNombreComunAsc();
     }
