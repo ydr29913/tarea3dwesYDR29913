@@ -66,5 +66,11 @@ public class Ejemplar implements Serializable {
 		return serialVersionUID;
 	}
 	
-	
+	public List<Mensaje> getMensajes() {
+		return mensajes;
+	}
+
+	public void setMensajes(List<Mensaje> mensajes) {
+		this.mensajes = mensajes;
+	}
 }

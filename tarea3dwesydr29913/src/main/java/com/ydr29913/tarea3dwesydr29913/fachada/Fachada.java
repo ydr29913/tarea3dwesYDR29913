@@ -54,7 +54,7 @@ public class Fachada {
   				opcion = sc.nextInt();
   				switch (opcion) {
   					case 1:
-  						menuLogin();
+  						autenticarse();
   						break;
   					case 2:
   						verPlantas();
@@ -79,38 +79,6 @@ public class Fachada {
   		}
   	}
   	
-  	
-	//Menu para logearse
-	public void menuLogin() {
-		Scanner sc = new Scanner(System.in);
-
-		int opcion = 0;
-
-		do {
-			try {
-				System.out.println("\n\n\t\t\tLOGIN\n");
-				System.out.println("\t\t\t\t1 - PERSONAL");
-				System.out.println("\t\t\t\t2 - ADMINISTRADOR GENERAL");
-				System.out.println("\n\t\t\t\t9 - SALIR");
-
-				opcion = sc.nextInt();
-				switch (opcion) {
-				case 1:
-					autenticarse();
-					break;
-				case 2:
-					autenticarse();
-					break;
-				case 9:
-					break;
-				}
-			} catch (InputMismatchException e) {
-				System.out.println("Debes introducir un número entero");
-				sc.nextLine();
-			}
-		} while (opcion != 9);
-	}
-	
 
 	//Metodo para autentificarse
 	public void autenticarse() {
@@ -136,25 +104,6 @@ public class Fachada {
             System.out.println("Usuario o contraseña incorrectos.");
         }
     }
-    
-    /*
-    public void autenticarse2() {
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Introduce tu nombre de usuario: ");
-        String usuario = sc.nextLine();
-        System.out.print("Introduce tu contraseña: ");
-        String contrasena = sc.nextLine();
-
-        Credenciales credenciales = servcredenciales.autenticarUsuario(usuario, contrasena);
-        if (credenciales != null) {
-            usuarioAutenticado = credenciales;
-            System.out.println("Autenticación exitosa. Bienvenido, " + usuario + "!");
-            menuPersonal();
-        } else {
-            System.out.println("Usuario o contraseña incorrectos.");
-        }
-    }
-    */
     
 
     //Menu para Administradores
@@ -359,7 +308,7 @@ public class Fachada {
 
             switch (opcion) {
                 case 1:
-                    //registrarNuevoEjemplar(usuario);
+                    registrarNuevoEjemplar(usuario);
                     break;
                 case 2:
                     filtrarEjemplaresPorPlanta();
@@ -373,8 +322,8 @@ public class Fachada {
         } while (opcion != 9);
     }
 	
-	/*
-	private void registrarNuevoEjemplar(String nombreUsuario) {
+	
+	private void registrarNuevoEjemplar(String nombre) {
 	     Scanner sc = new Scanner(System.in);
 	     
 	     System.out.println("Selecciona una planta de las siguientes:");
@@ -393,13 +342,13 @@ public class Fachada {
 	     System.out.println("Introduce un mensaje inicial para este ejemplar:");
 	     String mensajeInicial = sc.nextLine();
 
-	     Persona persona = servpersona.obtenerPersonaPorNombre(nombreUsuario);
+	     Persona persona = servpersona.obtenerPersonaPorNombre(nombre);
 
 	     servejemplar.registrarNuevoEjemplar(plantaSeleccionada, nombreEjemplar, mensajeInicial, persona);
 
 	     System.out.println("¡Ejemplar registrado con éxito!");
 	}
-	*/
+	
 	
 	private void filtrarEjemplaresPorPlanta() {
         Scanner sc = new Scanner(System.in);
